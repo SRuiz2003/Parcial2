@@ -1,32 +1,25 @@
 import '../App.css'
-import { getTodos } from './getTodos'
-import { useEffect,useState } from 'react'
-import { TodoItem } from './TodoItem'
-
+import { useState, useEffect } from 'react';
+import {TodoList} from './TodoItem';
+import { GetTodos } from './GetTodos';
 
 function App() {
+  const [todos, setTodos] = useState([]);
 
-  const [todos,setTodos] = useState([])
-  const getApi =  () =>{
-    const todos = getTodos();
-    setTodos(todos)
-  }
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then(data => setTodos(data));
+  }, []);
 
-  useEffect (() => {
-    getApi();
-  },[])
-
-  console.log(todos);
   return (
-    <div className="App">
-
-      <h1>Todo List</h1>
-      <div className="card">
-     
-      </div>
-   
+    <div>
+      <h1>Todos:</h1>
+      <ul>
+        <TodoList todos={todos}/>
+      </ul>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
