@@ -1,7 +1,7 @@
 import '../App.css'
 import { useState, useEffect, createContext } from 'react';
 import {TodoItem} from './TodoItem';
-import { GetTodos } from './GetTodos';
+import { GetTodos } from './getTodos';
 import {AddTodo} from './AddTodo'
 
 export const TodoContext = createContext();
